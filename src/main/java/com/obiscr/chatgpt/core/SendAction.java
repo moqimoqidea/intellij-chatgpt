@@ -8,6 +8,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
 import com.obiscr.chatgpt.ChatGPTHandler;
 import com.obiscr.chatgpt.GPT35TurboHandler;
+import com.obiscr.chatgpt.OllamaHandler;
 import com.obiscr.chatgpt.message.ChatGPTBundle;
 import com.obiscr.chatgpt.settings.OpenAISettingsState;
 import com.obiscr.chatgpt.settings.SettingConfiguration;
@@ -89,9 +90,9 @@ public class SendAction extends AnAction {
         }
 
         // Check the configuration first
-        if (!presetCheck(mainPanel.isChatGPTModel())) {
-            return;
-        }
+        // if (!presetCheck(mainPanel.isChatGPTModel())) {
+        //     return;
+        // }
 
         // Reset the question container
         mainPanel.getSearchTextArea().getTextArea().setText("");
@@ -117,9 +118,9 @@ public class SendAction extends AnAction {
                     contentPanel.scrollToBottom();
                 });
             } else {
-                ChatGPTHandler chatGPTHandler = project.getService(ChatGPTHandler.class);
+                OllamaHandler ollamaHandler = project.getService(OllamaHandler.class);
                 executorService.submit(() -> {
-                    EventSource handle = chatGPTHandler.handle(mainPanel, answer, data);
+                    EventSource handle = ollamaHandler.handle(mainPanel, answer, data);
                     mainPanel.setRequestHolder(handle);
                     contentPanel.updateLayout();
                     contentPanel.scrollToBottom();
