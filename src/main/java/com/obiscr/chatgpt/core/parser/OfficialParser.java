@@ -1,5 +1,8 @@
 package com.obiscr.chatgpt.core.parser;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -20,6 +23,22 @@ public class OfficialParser {
     private static final String PREFIX = "data: ";
     private static final String DETAIL = "detail";
     private static final String DONE = "[DONE]";
+
+    public static ParseResult parseTabbyChat(@NotNull Project project, MessageComponent component, String response) throws JsonProcessingException {
+        final ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode jsonNode = objectMapper.readTree(response);
+        JsonNode choiceNode = jsonNode.path("choices").get(0).path("delta").path("content");
+
+        if (choiceNode.isTextual()) {
+            String message = choiceNode.asText();
+            component.getAnswers().add(message);
+        }
+
+        ParseResult parseResult = new ParseResult();
+        parseResult.source = component.prevAnswers();
+        parseResult.html = HtmlUtil.md2html(component.prevAnswers());
+        return parseResult;
+    }
 
     public static ParseResult parseChatGPT(@NotNull Project project, MessageComponent component, String response) {
         response = new String(response.getBytes(StandardCharsets.UTF_8));

@@ -82,33 +82,11 @@ public class TabbyChatHandler extends AbstractHandler {
                     if (StringUtil.isEmpty(data)) {
                         return;
                     }
-                    if (data.contains("[DONE]")) {
-                        return;
-                    }
-                    if (mainPanel.isChatGPTModel() && !data.contains("message")) {
+                    if (data.contains("\"finish_reason\":\"stop\"")) {
                         return;
                     }
                     try {
-                        OfficialParser.ParseResult parseResult;
-                        if (mainPanel.isChatGPTModel()) {
-                            parseResult = OfficialParser.
-                                    parseChatGPT(myProject, component, data);
-                        } else {
-                            parseResult = OfficialParser.
-                                    parseGPT35TurboWithStream(component, data);
-                        }
-                        if (parseResult == null) {
-                            return;
-                        }
-                        if (!mainPanel.isChatGPTModel()) {
-                            if (data.contains("\"finish_reason\":\"stop\"")) {
-                                mainPanel.getContentPanel().getMessages().add(OfficialBuilder.assistantMessage(gpt35Stack.pop()));
-                                gpt35Stack.clear();
-                            } else {
-                                gpt35Stack.push(parseResult.getSource());
-                            }
-                        }
-                        // Copy action only needed source content
+                        OfficialParser.ParseResult parseResult = OfficialParser.parseTabbyChat(myProject, component, data);
                         component.setSourceContent(parseResult.getSource());
                         component.setContent(parseResult.getHtml());
                     } catch (Exception e) {
