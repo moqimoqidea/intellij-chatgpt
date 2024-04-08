@@ -24,12 +24,15 @@ import org.jetbrains.annotations.Nullable;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.obiscr.chatgpt.MyToolWindowFactory.*;
+import static com.obiscr.chatgpt.MyToolWindowFactory.CHATGPT_CONTENT_NAME;
 
 /**
  * @author Wuzi
@@ -76,10 +79,7 @@ public class OpenAISettingsPanel implements Configurable, Disposable {
     private ExpandableTextField prompt1ValueField;
     private ExpandableTextField prompt3ValueField;
     private ExpandableTextField prompt2ValueField;
-    private final String[] comboboxItemsString = {
-            CHATGPT_CONTENT_NAME,
-            GPT35_TRUBO_CONTENT_NAME,
-            ONLINE_CHATGPT_CONTENT_NAME};
+    private final String[] comboboxItemsString = {CHATGPT_CONTENT_NAME};
     private boolean needRestart = false;
 
     public static final String FIND_GRANTS = "https://api.openai.com/dashboard/billing/credit_grants";

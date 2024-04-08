@@ -12,9 +12,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.net.Proxy;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import static com.obiscr.chatgpt.MyToolWindowFactory.*;
+import static com.obiscr.chatgpt.MyToolWindowFactory.CHATGPT_CONTENT_NAME;
 
 /**
  * @author Wuzi
@@ -46,8 +49,6 @@ public class OpenAISettingsState implements PersistentStateComponent<OpenAISetti
   public String apiKey = "";
   public Map<Integer,String> contentOrder = new HashMap<>(){{
     put(1, CHATGPT_CONTENT_NAME);
-    put(2, GPT35_TRUBO_CONTENT_NAME);
-    put(3, ONLINE_CHATGPT_CONTENT_NAME);
   }};
 
   public Boolean enableLineWarp = true;
