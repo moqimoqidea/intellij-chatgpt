@@ -2,12 +2,9 @@ package com.obiscr.chatgpt;
 
 import com.intellij.openapi.project.Project;
 import com.obiscr.chatgpt.ui.MainPanel;
-import com.obiscr.chatgpt.util.MyUIUtil;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 
 
 /**
@@ -29,7 +26,4 @@ public class ChatGPTToolWindow {
     return panel;
   }
 
-  public void registerKeystrokeFocus(){
-    MyUIUtil.registerKeystrokeFocusForInput(panel.getSearchTextArea().getTextArea());
-  }
 }

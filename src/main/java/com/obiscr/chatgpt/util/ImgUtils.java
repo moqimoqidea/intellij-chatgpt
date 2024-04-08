@@ -2,13 +2,10 @@ package com.obiscr.chatgpt.util;
 
 import cn.hutool.core.img.ImgUtil;
 import com.intellij.util.ui.ImageUtil;
-import com.intellij.util.ui.UIUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import javax.imageio.ImageIO;
 
 /**
  * @author wuzi

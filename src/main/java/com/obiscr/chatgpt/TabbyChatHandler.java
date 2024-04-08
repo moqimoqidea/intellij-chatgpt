@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 /**
  * @author wuzi
  */
-public class TabbyChatHandler extends AbstractHandler {
+public class TabbyChatHandler {
 
     private Project myProject;
 
