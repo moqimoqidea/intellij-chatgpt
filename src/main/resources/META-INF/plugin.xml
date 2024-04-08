@@ -5,9 +5,6 @@
 
   <depends>com.intellij.modules.platform</depends>
   <depends>org.intellij.plugins.markdown</depends>
-  <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
-       on how to target different products -->
-  <!--<depends>com.intellij.modules.platform</depends>-->
 
   <extensions defaultExtensionNs="com.intellij">
     <toolWindow id="ChatGPT" anchor="right" icon="/icons/toolWindow.svg" canCloseContents="true"
@@ -15,9 +12,6 @@
     <applicationConfigurable parentId="tools" instance="com.obiscr.chatgpt.settings.OpenAISettingsPanel"
                              id="com.obiscr.chatgpt.settings.OpenAISettings"
                              displayName="OpenAI"/>
-<!--    <groupConfigurable id="com.obiscr.chatgpt.settings.OpenAISettings" weight="-10"-->
-<!--                       displayNameKey="OpenAI"-->
-<!--                       descriptionKey="Here are the relevant settings for OpenAI"/>-->
     <applicationConfigurable parentId="com.obiscr.chatgpt.settings.OpenAISettings" instance="com.obiscr.chatgpt.settings.ChatGPTSettingsPanel"
                              id="com.obiscr.chatgpt.settings.ChatGPT"
                              displayName="ChatGPT"/>
@@ -28,13 +22,9 @@
                              id="com.obiscr.chatgpt.settings.commandActions"
                              displayName="Custom Prompt"/>
     <applicationService serviceImplementation="com.obiscr.chatgpt.settings.OpenAISettingsState"/>
-    <applicationService serviceImplementation="com.obiscr.chatgpt.core.TokenManager"/>
     <projectService serviceImplementation="com.obiscr.chatgpt.core.ConversationManager"/>
     <projectService serviceImplementation="com.obiscr.chatgpt.core.SendAction"/>
-    <projectService serviceImplementation="com.obiscr.chatgpt.ChatGPTHandler"/>
-    <projectService serviceImplementation="com.obiscr.chatgpt.OllamaHandler"/>
     <projectService serviceImplementation="com.obiscr.chatgpt.TabbyChatHandler"/>
-    <projectService serviceImplementation="com.obiscr.chatgpt.GPT35TurboHandler"/>
     <iconMapper mappingFile="ChatGPTIconMappings.json"/>
   </extensions>
 
